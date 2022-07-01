@@ -13,9 +13,9 @@ REPOSITORY = "DemoPrivateRepository"
 
 @routes.post("/")
 async def main(request):
-    return web.Response(status=200, text='Hello world!')
-    '''
     async with aiohttp.ClientSession() as session:
+        pass
+    '''
         gh = gh_aiohttp.GitHubAPI(session, USER, oauth_token=os.getenv("GH_TOKEN"))
         branches = await gh.getitem(f'/repos/{USER}/{REPOSITORY}/branches')
         # For each branch
@@ -34,8 +34,8 @@ async def main(request):
             else:
                 print("I was called, but I didn't do shiet")
 
-        return web.Response(status=200)
     '''
+    return web.Response(status=200)
 
 if __name__ == "__main__":
     app = web.Application()
