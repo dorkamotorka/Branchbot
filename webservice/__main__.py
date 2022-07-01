@@ -14,10 +14,9 @@ REPOSITORY = "DemoPrivateRepository"
 @routes.post("/")
 async def main(request):
     async with aiohttp.ClientSession() as session:
-        pass
-    '''
-        gh = gh_aiohttp.GitHubAPI(session, USER, oauth_token=os.getenv("GH_TOKEN"))
+        gh = gh_aiohttp.GitHubAPI(session, USER, oauth_token=os.getenv("GH_AUTH"))
         branches = await gh.getitem(f'/repos/{USER}/{REPOSITORY}/branches')
+        '''
         # For each branch
         for b in branches:
             name = b['name']
@@ -33,8 +32,8 @@ async def main(request):
                 print(f"Delete branch {name} in repository {REPOSITORY}. {user} made me do it, I'm sorry :(")
             else:
                 print("I was called, but I didn't do shiet")
+        '''
 
-    '''
     return web.Response(status=200)
 
 if __name__ == "__main__":
